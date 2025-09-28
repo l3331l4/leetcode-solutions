@@ -1,6 +1,7 @@
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
         # at each coin, either take it, or move to next coin
+        # TOP DOWN
         n = len(coins)
         memo = {}
 
