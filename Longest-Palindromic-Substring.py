@@ -1,28 +1,33 @@
 class Solution:
     def longestPalindrome(self, s: str) -> str:
         n = len(s)
-        dp = [ [False] * n for _ in range(n) ]
-        # DP[i][j] = is char i to char j a palindrome
-        start = 0
-        end = 0
-        maxLen = 0
+        maxLen = 1
+        starti = 0
+        
+        def expand(l, r):
+            
+            while (l >= 0 and r < len(s)) and s[l] == s[r]:
+                l -= 1
+                r += 1
 
-        for i in range(n):
-            dp[i][i] = True
+            return l+1, r-1
 
-        for i in range(n-1, -1, -1):
-            for j in range(i+1, n):
+        for i in range(len(s)):
+            l1, r1 = expand(i, i)
+            l2, r2 = expand(i, i+1)
+            len1 = r1 - l1 + 1
+            len2 = r2 - l2 + 1
+            
+            if len1 >= len2:
+                if len1 > maxLen:
+                    maxLen = len1
+                    starti = l1
+            else:
+                if len2 > maxLen:
+                    maxLen = len2
+                    starti = l2
 
-                if s[i] == s[j]:
-                    if (j == i + 1) or (dp[i+1][j-1]):
-                        dp[i][j] = True
-                        length = j - i + 1
-                        if length > maxLen:
-                            maxLen = length
-                            start = i
-                            end = j
+        return s[starti:starti+maxLen] 
 
-        return s[start:end+1]
-                        
 
         
