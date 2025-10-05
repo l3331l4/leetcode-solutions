@@ -3,16 +3,6 @@ class Solution:
         ROWS = len(heights)
         COLS = len(heights[0])
 
-        def isTouchingPacific(row, col):
-            if (row == 0) or (col == 0):
-                return True
-            return False
-        
-        def isTouchingAtlantic(row, col):
-            if (row == ROWS-1) or (col == COLS-1):
-                return True
-            return False
-
         def isValid(row, col):
             if (row >= 0) and (row < ROWS) and (col >= 0) and (col < COLS):
                 return True
