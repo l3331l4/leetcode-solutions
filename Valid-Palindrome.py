@@ -6,16 +6,17 @@ class Solution:
                 return True
             return False
 
-        newStr = ""
-        for c in s:
-            if isAlphaNum(c):
-                newStr += c.lower()
-        
         l = 0
-        r = len(newStr) - 1
+        r = len(s) - 1
 
         while l < r:
-            if newStr[l] != newStr[r]:
+            while l < r and not (isAlphaNum(s[l])):
+                l += 1
+
+            while l < r and not (isAlphaNum(s[r])):
+                r -= 1
+
+            if s[l].lower() != s[r].lower():
                 return False
             l += 1
             r -= 1
